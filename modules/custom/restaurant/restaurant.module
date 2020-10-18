@@ -3,6 +3,7 @@
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * restaurant_form_node_form_alter
@@ -12,7 +13,7 @@ use Drupal\paragraphs\Entity\Paragraph;
  * @param  mixed $form_id
  * @return void
  */
-function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
+function restaurant_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'node_restaurant_form' || $form_id == 'node_restaurant_edit_form') {
     // Attach js library.
     $form['title']['#attached'] = array(
@@ -22,6 +23,23 @@ function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
     );
     if (isset($form['field_address'])) {
       $form['field_address']['#suffix'] = '<div id="set-time-slots">Set Time Slots</div>' ;
+    }
+  }
+  if ($form_id == 'webform_submission_restaurant_booking_add_form') {
+    $pid = \Drupal::request()->query->get('pid');
+    if ($pid) {
+      $form['elements']['pid']['#default_value'] = $pid;
+      $paragraph = Paragraph::load($pid);
+      if ($paragraph) {
+        $node = $paragraph->getParentEntity();
+        if ($node && $node->getType() == 'restaurant') {
+          $form['elements']['nodeid']['#default_value'] = $pid;
+          $form['elements']['restaurant_name']['#default_value'] = $node->field_restaurant_name->value;
+          $form['elements']['time_slot']['#default_value'] = date('Y-m-d H:i:s', $paragraph->field_start->value);
+          $form['elements']['time_slot']['#disabled'] = true;
+          $form['elements']['restaurant_name']['#disabled'] = true;
+        }
+      }
     }
   }
 }
@@ -81,4 +99,28 @@ function restaurant_node_presave(NodeInterface $node) {
   if ($timeslots) {
     $node->set('field_time_slots', $timeslots);
   }
+}
+
+/**
+* Implements hook_mail().
+*/
+function restaurant_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  $message['headers'] = [
+    'MIME-Version' => '1.0',
+    'Content-Type' => 'text/html; charset=ISO-8859-1; format=flowed; delsp=yes',
+    'Content-Transfer-Encoding' => '8Bit',
+    'X-Mailer' => 'Drupal',
+  ];
+  if (isset($params['attachments'])) {
+    $message['params']['attachments'][] = $params['attachments'];
+  }
+  $message['subject'] = $params['message']['subject'] ?? '';
+  $message['body'][] = $params['message']['body'] ?? '';
+ }
+
+function restaurant_webform_submission_insert(WebformSubmissionInterface $webform_submission) {
+  \Drupal::service('restaurant.manager')->sendEmailNotifications($webform_submission);
 }
