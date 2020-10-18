@@ -1,0 +1,41 @@
+<?php
+
+namespace Drupal\restaurant\Controller;
+
+use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Component\Utility\Html;
+use Drupal\paragraphs\Entity\Paragraph;
+
+/*use Drupal\sweetalert\Ajax\SweetAlertCommand;
+use Drupal\views\Plugin\views\query\QueryPluginBase;*/
+
+/**
+ * Defines IncidentReportController class.
+ */
+class RestaurantController extends ControllerBase {
+	public function addTimeSlot(Request $request) {
+		$data = $request->request->get('data');
+		$response = \Drupal::service('restaurant.manager')->addTimeSlot($data);
+		return new JsonResponse( $response );
+	}
+
+	public function test() {
+		$node = Node::load(2);
+		$timeslots = $node->field_time_slots->getValue();
+		foreach ($timeslots as $item) {
+			$p = Paragraph::load($item['target_id']);
+			kint($p);
+		}
+	
+		die;
+	}
+}

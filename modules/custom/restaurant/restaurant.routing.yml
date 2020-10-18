@@ -1,0 +1,15 @@
+restaurant.add_time_slot:
+  path: '/add-time-slot'
+  defaults: 
+    _controller: '\Drupal\restaurant\Controller\RestaurantController::addTimeSlot'
+  methods:  [POST]
+  requirements:
+    _access: 'TRUE'
+    _permission: 'access content'
+
+irestaurant.test:
+  path: '/test'
+  defaults:
+    _controller: '\Drupal\restaurant\Controller\RestaurantController::test'
+  requirements:
+    _permission: 'administer content'

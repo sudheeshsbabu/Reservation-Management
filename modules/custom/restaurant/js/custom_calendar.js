@@ -35,10 +35,26 @@ jQuery(document).ready(function() {
       }
     },
     eventNew: function(calEvent, $event) {
-      displayMessage('<strong>Added event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-      alert('You\'ve added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.');
-      console.log(calEvent);
+      displayMessage('<strong>Added timeslot</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+      alert('You\'ve added a new timeslot.');
+      console.log(calEvent.start);
       console.log($event);
+      var data = {
+        start: calEvent.start.getTime(),
+        end: calEvent.end.getTime(),
+        title: calEvent.title
+      }
+      jQuery.ajax({
+        url: '/add-time-slot',
+        async: true,
+        type: 'POST',
+        data: {
+          'data': data
+        },
+        success: function (data) {
+          console.log('data = ' + data);
+        }
+      });
     },
     eventDrop: function(calEvent, $event) {
       displayMessage('<strong>Moved Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);

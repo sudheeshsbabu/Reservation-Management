@@ -7,6 +7,7 @@ restaurant_js:
   dependencies:
     - core/jquery
     - core/jquery.once
+    - core/jquery.ui.droppable
 
 calendar:
   css:
@@ -17,6 +18,10 @@ calendar:
   js:
     js/jquery-1.4.4.min.js: {}
     js/jquery-ui-1.8.11.custom.min.js: {}
-    js/date.js: {}
+    #js/date.js: {}
     js/jquery.weekcalendar.js: {}
     js/custom_calendar.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.ui
+    - core/jquery.ui.droppable

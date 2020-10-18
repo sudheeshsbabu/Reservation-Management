@@ -1,0 +1,5 @@
+services:
+
+  # Defines a service which requires the module_handler for its constructor.
+  restaurant.manager:
+    class: Drupal\restaurant\RestaurantManager

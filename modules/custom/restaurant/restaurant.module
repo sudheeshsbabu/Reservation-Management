@@ -1,9 +1,8 @@
 <?php
 
-/**
- * @file
- * Contains enterprise_management.module.
- */
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 
 function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'node_restaurant_form') {
@@ -13,8 +12,8 @@ function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
         'restaurant/restaurant_js',
       ),
     );
-    if (isset($form['field_5_star_voting'])) {
-      $form['field_5_star_voting']['#suffix'] = '<div id="set-time-slots">Set Time Slots</div>' ;
+    if (isset($form['field_address'])) {
+      $form['field_address']['#suffix'] = '<div id="set-time-slots">Set Time Slots</div>' ;
     }
   }
 }
@@ -25,6 +24,25 @@ function restaurant_preprocess_page(&$variables) {
     $node = \Drupal::request()->attributes->get('node');
     if ($node && $node->id() == 1) {
       $variables['#attached']['library'][] = 'restaurant/calendar';
+    }
+  }
+}
+
+function restaurant_node_presave(NodeInterface $node) {
+  $timeslots = [];
+  $pids = \Drupal::entityTypeManager()
+  ->getStorage('paragraph')
+  ->getQuery()
+  ->condition('type', 'time_slot')
+  ->notExists('parent_id')->execute();
+  if ($pids) {
+    foreach ($pids as $pid) {
+      $timeslot = Paragraph::load($pid);
+      $timeslots[] = [
+        'target_id' => $timeslot->id(),
+        'target_revision_id' => $timeslot->getRevisionId(),
+      ];
+      $node->set('field_time_slots', $timeslots);
     }
   }
 }
