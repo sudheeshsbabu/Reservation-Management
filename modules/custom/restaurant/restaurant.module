@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains enterprise_management.module.
+ */
+
+function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'node_restaurant_form') {
+    // Attach js library.
+    $form['title']['#attached'] = array(
+      'library' => array(
+        'restaurant/restaurant_js',
+      ),
+    );
+    if (isset($form['field_5_star_voting'])) {
+      $form['field_5_star_voting']['#suffix'] = '<div id="calendar"></div>' ;
+    }
+  }
+}
+
+function restaurant_preprocess_page(&$variables) {
+  $variables['#attached']['library'][] = 'restaurant/calendar';
+}

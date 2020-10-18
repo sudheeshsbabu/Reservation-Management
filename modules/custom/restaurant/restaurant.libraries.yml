@@ -1,0 +1,20 @@
+restaurant_js:
+  js:
+    js/restaurant.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - restaurant/calendar
+
+calendar:
+  css:
+    theme:
+      css/jquery.weekcalendar.css: {}
+      css/jquery-ui-1.8.11.custom.css: {}
+      css/calendar.css: {}
+  js:
+    js/jquery-1.4.4.min.js: {}
+    js/jquery-ui-1.8.11.custom.min.js: {}
+    js/date.js: {}
+    js/jquery.weekcalendar.js: {}
+    js/custom_calendar.js: {}
