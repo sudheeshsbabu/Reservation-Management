@@ -13,7 +13,7 @@ use Drupal\paragraphs\Entity\Paragraph;
  * @return void
  */
 function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
-  if ($form_id == 'node_restaurant_form') {
+  if ($form_id == 'node_restaurant_form' || $form_id == 'node_restaurant_edit_form') {
     // Attach js library.
     $form['title']['#attached'] = array(
       'library' => array(
@@ -50,6 +50,20 @@ function restaurant_preprocess_page(&$variables) {
  */
 function restaurant_node_presave(NodeInterface $node) {
   $timeslots = [];
+  $existing_pids = \Drupal::entityTypeManager()
+  ->getStorage('paragraph')
+  ->getQuery()
+  ->condition('type', 'time_slot')
+  ->condition('parent_id', $node->id())->execute();
+  if ($existing_pids) {
+    foreach ($existing_pids as $pid) {
+      $timeslot = Paragraph::load($pid);
+      $timeslots[] = [
+        'target_id' => $timeslot->id(),
+        'target_revision_id' => $timeslot->getRevisionId(),
+      ];
+    }
+  }
   $pids = \Drupal::entityTypeManager()
   ->getStorage('paragraph')
   ->getQuery()
@@ -62,7 +76,9 @@ function restaurant_node_presave(NodeInterface $node) {
         'target_id' => $timeslot->id(),
         'target_revision_id' => $timeslot->getRevisionId(),
       ];
-      $node->set('field_time_slots', $timeslots);
     }
+  }
+  if ($timeslots) {
+    $node->set('field_time_slots', $timeslots);
   }
 }

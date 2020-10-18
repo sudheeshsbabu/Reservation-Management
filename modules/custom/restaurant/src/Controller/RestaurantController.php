@@ -44,6 +44,18 @@ class RestaurantController extends ControllerBase {
 			$p = Paragraph::load($item['target_id']);
 			kint($p);
 		}
+		// $p = Paragraph::load(3);
+		// kint($p);
+		// $p = Paragraph::load(4);
+		// kint($p);
+		// $pids = \Drupal::entityTypeManager()
+		// ->getStorage('paragraph')
+		// ->getQuery()
+		// ->condition('type', 'time_slot')
+		// // ->notExists('parent_id')
+		// ->condition('parent_id', '', '<>')
+		// ->execute();
+		// kint($pids);
 		die;
 	}
 }
