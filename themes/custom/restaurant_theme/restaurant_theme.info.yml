@@ -1,0 +1,8 @@
+name: Restaurant Management
+type: theme
+description: Custom theme created for restaurant management system.
+core: 8.x
+# Defines the base theme
+base theme: bartik
+libraries:
+  - restaurant_theme/custom

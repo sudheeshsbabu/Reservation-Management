@@ -1,0 +1,31 @@
+.timeslot-wrap {
+  display: inline-block;
+  margin-top: 15px;
+}
+.timeslots {
+  display: inline-flex;
+}
+.timslot-value {
+  padding: 7px 15px;
+  background: #1b6b9b;
+  color: #fff;
+  margin-right: 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.timeslot-date {
+  background: #40f;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 7px;
+}
+.timeslot-view-all {
+  text-align: center;
+  padding: 7px 15px;
+  border: solid 1px #9f9e9e;
+  margin-top: 15px;
+}

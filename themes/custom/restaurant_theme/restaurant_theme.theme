@@ -1,0 +1,39 @@
+<?php
+
+use Drupal\paragraphs\Entity\Paragraph;
+
+function restaurant_theme_preprocess_field(&$variables) {
+  $data = [];
+  if ($variables['field_name'] == 'field_time_slots') {
+    if (isset($variables['element']['#object'])) {
+      $node = $variables['element']['#object'];
+      if ($node && $node->getType() == 'restaurant') {
+        $time = time();
+        $endOfDay   = strtotime("tomorrow", $time) - 1;
+        $pids = \Drupal::entityTypeManager()
+        ->getStorage('paragraph')
+        ->getQuery()
+        ->condition('type', 'time_slot')
+        ->condition('parent_id', $node->id())
+        ->condition('field_start', $time, '>=')
+        ->condition('field_end', $endOfDay, '<')
+        ->sort('field_start', 'asc')
+        ->execute();
+        if ($pids) {
+          foreach ($pids as $pid) {
+            $p = Paragraph::load($pid);
+            if ($p) {
+              $start = $p->field_start->value;
+              if ($start) {
+                $data['date'] = date('D, M d', $start);
+                $data['timeslot'][$pid]['time'] = date('H:i', $start);
+                $data['timeslot'][$pid]['pid'] = $pid;
+              }
+            }
+          }
+        }
+        $variables['timeslot'] = $data;
+      }
+    }
+  }
+}
