@@ -63,7 +63,7 @@ class RestaurantManager {
         // Send mail to user.
         $subject = 'Reservation placed on ' . $restaurant . ' at ' . $data['time_slot'];
         $body = 'Hi ' . $name . ',<br>';
-        $body .= ' Your have booked a reservation on ' . $restaurant . ' at ' . $data['time_slot'];
+        $body .= ' You have booked a reservation on ' . $restaurant . ' at ' . $data['time_slot'];
         $to = $data['email'];
         $mailManager = \Drupal::service('plugin.manager.mail');
         $module = 'restaurant';
