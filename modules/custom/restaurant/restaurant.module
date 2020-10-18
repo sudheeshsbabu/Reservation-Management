@@ -14,11 +14,17 @@ function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
       ),
     );
     if (isset($form['field_5_star_voting'])) {
-      $form['field_5_star_voting']['#suffix'] = '<div id="calendar"></div>' ;
+      $form['field_5_star_voting']['#suffix'] = '<div id="set-time-slots">Set Time Slots</div>' ;
     }
   }
 }
 
 function restaurant_preprocess_page(&$variables) {
-  $variables['#attached']['library'][] = 'restaurant/calendar';
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name == 'entity.node.canonical') {
+    $node = \Drupal::request()->attributes->get('node');
+    if ($node && $node->id() == 1) {
+      $variables['#attached']['library'][] = 'restaurant/calendar';
+    }
+  }
 }

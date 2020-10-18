@@ -1,10 +1,12 @@
 restaurant_js:
+  css:
+    theme:
+      css/restuarant.css: {}
   js:
     js/restaurant.js: {}
   dependencies:
     - core/jquery
     - core/jquery.once
-    - restaurant/calendar
 
 calendar:
   css:

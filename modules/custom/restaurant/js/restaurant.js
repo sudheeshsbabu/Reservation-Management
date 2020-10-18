@@ -1,5 +1,8 @@
 Drupal.behaviors.restaurant = {
 	attach: function(context, settings) {
-		console.log('test');
+		jQuery('#set-time-slots', context).once('restaurantBehavior').on('click', function() {
+			var url = '/node/1';
+			window.open(url, '_blank');
+		});
 	}
 };
