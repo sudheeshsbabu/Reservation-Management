@@ -4,6 +4,14 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 
+/**
+ * restaurant_form_node_form_alter
+ *
+ * @param  mixed $form
+ * @param  mixed $form_state
+ * @param  mixed $form_id
+ * @return void
+ */
 function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'node_restaurant_form') {
     // Attach js library.
@@ -18,6 +26,12 @@ function restaurant_form_node_form_alter(&$form, $form_state, $form_id) {
   }
 }
 
+/**
+ * restaurant_preprocess_page
+ *
+ * @param  mixed $variables
+ * @return void
+ */
 function restaurant_preprocess_page(&$variables) {
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name == 'entity.node.canonical') {
@@ -28,6 +42,12 @@ function restaurant_preprocess_page(&$variables) {
   }
 }
 
+/**
+ * restaurant_node_presave
+ *
+ * @param  mixed $node
+ * @return void
+ */
 function restaurant_node_presave(NodeInterface $node) {
   $timeslots = [];
   $pids = \Drupal::entityTypeManager()

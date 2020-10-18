@@ -15,19 +15,28 @@ use Drupal\taxonomy\Entity\Term;
 use Drupal\Component\Utility\Html;
 use Drupal\paragraphs\Entity\Paragraph;
 
-/*use Drupal\sweetalert\Ajax\SweetAlertCommand;
-use Drupal\views\Plugin\views\query\QueryPluginBase;*/
-
 /**
- * Defines IncidentReportController class.
+ * Defines RestaurantController class.
  */
 class RestaurantController extends ControllerBase {
+	
+	/**
+	 * addTimeSlot
+	 *
+	 * @param  mixed $request
+	 * @return void
+	 */
 	public function addTimeSlot(Request $request) {
 		$data = $request->request->get('data');
 		$response = \Drupal::service('restaurant.manager')->addTimeSlot($data);
 		return new JsonResponse( $response );
 	}
-
+	
+	/**
+	 * test
+	 *
+	 * @return void
+	 */
 	public function test() {
 		$node = Node::load(2);
 		$timeslots = $node->field_time_slots->getValue();
@@ -35,7 +44,6 @@ class RestaurantController extends ControllerBase {
 			$p = Paragraph::load($item['target_id']);
 			kint($p);
 		}
-	
 		die;
 	}
 }

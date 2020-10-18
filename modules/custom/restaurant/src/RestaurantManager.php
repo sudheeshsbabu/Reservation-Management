@@ -5,6 +5,13 @@ namespace Drupal\restaurant;
 use Drupal\paragraphs\Entity\Paragraph;
 
 class RestaurantManager {
+    
+  /**
+   * addTimeSlot
+   *
+   * @param  mixed $data
+   * @return void
+   */
   public function addTimeSlot($data) {
     $response = [
       'status' => 'error'
