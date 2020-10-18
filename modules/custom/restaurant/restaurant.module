@@ -15,6 +15,10 @@ use Drupal\webform\WebformSubmissionInterface;
  */
 function restaurant_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'node_restaurant_form' || $form_id == 'node_restaurant_edit_form') {
+    
+    // create calendar page.
+    \Drupal::service('restaurant.manager')->createCalendarPage();
+
     // Attach js library.
     $form['title']['#attached'] = array(
       'library' => array(
@@ -121,6 +125,22 @@ function restaurant_mail($key, &$message, $params) {
   $message['body'][] = $params['message']['body'] ?? '';
  }
 
+/**
+ * restaurant_webform_submission_insert
+ *
+ * @param  mixed $webform_submission
+ * @return void
+ */
 function restaurant_webform_submission_insert(WebformSubmissionInterface $webform_submission) {
   \Drupal::service('restaurant.manager')->sendEmailNotifications($webform_submission);
+}
+
+/**
+ * restaurant_cron
+ *
+ * @return void
+ */
+function restaurant_cron() {
+  // create calendar page.
+  \Drupal::service('restaurant.manager')->createCalendarPage();
 }

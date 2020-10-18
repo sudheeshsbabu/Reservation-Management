@@ -6,6 +6,7 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\user\Entity\User;
+use Drupal\node\Entity\Node;
 
 class RestaurantManager {
     
@@ -91,6 +92,29 @@ class RestaurantManager {
         $send = true;
         $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
       }
+    }
+  }
+  
+  /**
+   * createCalendarPage
+   *
+   * @return void
+   */
+  public function createCalendarPage() {
+    $node = Node::load(1);
+    if ($node) {
+      $body = '<h1>Week Calendar Demo</h1>';
+      $body .= '<p class="description">Click on date cells to add a time slot. When you finish adding time ';
+      $body .= 'slots go back to node add/edit form and save the modifications.</p>';
+      $body .= '<div id="calendar">&nbsp;</div>';
+      $properties = [
+        'type' => 'page',
+        'title' => 'Calendar',
+        'body' => $body
+      ];
+      $calendar = Node::create($properties);
+      $calendar->body->format = 'full_html';
+      $calendar->save();
     }
   }
 }
