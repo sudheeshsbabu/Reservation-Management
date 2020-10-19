@@ -102,7 +102,7 @@ class RestaurantManager {
    */
   public function createCalendarPage() {
     $node = Node::load(1);
-    if ($node) {
+    if (empty($node)) {
       $body = '<h1>Week Calendar Demo</h1>';
       $body .= '<p class="description">Click on date cells to add a time slot. When you finish adding time ';
       $body .= 'slots go back to node add/edit form and save the modifications.</p>';

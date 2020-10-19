@@ -82,7 +82,7 @@
 {% endif %}
 #}
 <div class="timeslot-wrap">
-  <div class="timeslot-date">{{timeslot.date?timeslot.date:'No Data'}}</div>
+  <div class="timeslot-date">{{timeslot.date?timeslot.date:'No Timeslots found'}}</div>
   {% if timeslot %}
   <div class="timeslots">
     {% for slot in timeslot.timeslot %}

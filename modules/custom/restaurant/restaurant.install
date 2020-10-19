@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * restaurant_install
+ *
+ * @return void
+ */
+function restaurant_install() {
+  // create calendar page.
+  \Drupal::service('restaurant.manager')->createCalendarPage();
+}
