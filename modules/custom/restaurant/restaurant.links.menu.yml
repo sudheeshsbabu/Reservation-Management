@@ -1,0 +1,6 @@
+restaurant.settings:
+  title: 'Restaurant Settings'
+  description: 'Create calendar page'
+  parent: system.admin_config_development
+  route_name: restaurant.initial-setup
+  weight: 5
