@@ -1,0 +1,14 @@
+uuid: 6fb5907f-0f4c-4adc-8c18-3fbc114014fd
+name: 'Restaurant Reservations'
+mail: test@test.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE

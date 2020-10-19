@@ -1,0 +1,29 @@
+uuid: 949dd09c-66ab-48ec-a0a0-8b5ee1bf4e39
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_5_star_voting
+    - node.type.restaurant
+  module:
+    - fivestar
+id: node.restaurant.field_5_star_voting
+field_name: field_5_star_voting
+entity_type: node
+bundle: restaurant
+label: '5 star voting'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  stars: 5
+  allow_clear: false
+  allow_revote: true
+  allow_ownvote: true
+  rated_while: viewing
+  enable_voting_target: false
+  target_bridge_field: ''
+  target_fivestar_field: ''
+field_type: fivestar

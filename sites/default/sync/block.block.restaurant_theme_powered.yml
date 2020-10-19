@@ -1,0 +1,22 @@
+uuid: 18ccd82a-5e0e-49b3-b9f0-8d1670c5bdd6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - restaurant_theme
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: restaurant_theme_powered
+theme: restaurant_theme
+region: sidebar_first
+weight: 10
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

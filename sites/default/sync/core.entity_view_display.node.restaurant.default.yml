@@ -1,0 +1,70 @@
+uuid: fad7a4c9-6632-4ac5-96ff-9e059b0a1d9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.restaurant.field_5_star_voting
+    - field.field.node.restaurant.field_address
+    - field.field.node.restaurant.field_restaurant_image
+    - field.field.node.restaurant.field_restaurant_name
+    - field.field.node.restaurant.field_time_slots
+    - node.type.restaurant
+  module:
+    - entity_reference_revisions
+    - fivestar
+    - image
+    - text
+    - user
+id: node.restaurant.default
+targetEntityType: node
+bundle: restaurant
+mode: default
+content:
+  field_5_star_voting:
+    weight: 104
+    label: above
+    settings:
+      text_format: average
+      display_format: average
+      fivestar_widget: basic
+    third_party_settings: {  }
+    type: fivestar_stars
+    region: content
+  field_address:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_restaurant_image:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_restaurant_name:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_time_slots:
+    type: entity_reference_revisions_entity_view
+    weight: 105
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

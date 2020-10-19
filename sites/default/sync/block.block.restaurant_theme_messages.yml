@@ -1,0 +1,22 @@
+uuid: 7ae4bbb4-d634-482e-bfb8-2206e5628207
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - restaurant_theme
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: restaurant_theme_messages
+theme: restaurant_theme
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

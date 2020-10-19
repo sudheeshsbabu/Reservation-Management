@@ -1,0 +1,21 @@
+uuid: b9467287-e08c-4638-9b01-3326a77fdd36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_end
+    - paragraphs.paragraphs_type.time_slot
+  module:
+    - datetime
+id: paragraph.time_slot.field_end
+field_name: field_end
+entity_type: paragraph
+bundle: time_slot
+label: End
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

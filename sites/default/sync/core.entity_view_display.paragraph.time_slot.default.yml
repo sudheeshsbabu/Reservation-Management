@@ -1,0 +1,53 @@
+uuid: 4b3c4530-7c41-45ec-8efb-42decd00fd16
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.time_slot.field_date
+    - field.field.paragraph.time_slot.field_end
+    - field.field.paragraph.time_slot.field_start
+    - field.field.paragraph.time_slot.field_title
+    - paragraphs.paragraphs_type.time_slot
+  module:
+    - datetime
+id: paragraph.time_slot.default
+targetEntityType: paragraph
+bundle: time_slot
+mode: default
+content:
+  field_date:
+    weight: 1
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_end:
+    weight: 3
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_start:
+    weight: 2
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

@@ -1,0 +1,10 @@
+uuid: 619874ba-7f05-4828-86f2-577ec14f8653
+langcode: en
+status: true
+dependencies: {  }
+id: time_slot
+label: 'Time slot'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

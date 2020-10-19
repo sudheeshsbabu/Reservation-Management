@@ -1,0 +1,21 @@
+uuid: 01e5c419-2151-4d89-a48a-e6011c18ba21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_start
+    - paragraphs.paragraphs_type.time_slot
+  module:
+    - datetime
+id: paragraph.time_slot.field_start
+field_name: field_start
+entity_type: paragraph
+bundle: time_slot
+label: Start
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,21 @@
+uuid: ff920d00-c729-48d3-857d-948f89612731
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_date
+    - paragraphs.paragraphs_type.time_slot
+  module:
+    - datetime
+id: paragraph.time_slot.field_date
+field_name: field_date
+entity_type: paragraph
+bundle: time_slot
+label: Date
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

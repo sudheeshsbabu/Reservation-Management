@@ -1,0 +1,46 @@
+uuid: c76ff57a-dc47-45d6-a398-cbf731a705a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.time_slot.field_date
+    - field.field.paragraph.time_slot.field_end
+    - field.field.paragraph.time_slot.field_start
+    - field.field.paragraph.time_slot.field_title
+    - paragraphs.paragraphs_type.time_slot
+  module:
+    - datetime
+id: paragraph.time_slot.default
+targetEntityType: paragraph
+bundle: time_slot
+mode: default
+content:
+  field_date:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_end:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_start:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_title:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
