@@ -33,6 +33,22 @@ class RestaurantController extends ControllerBase {
 	}
 	
 	/**
+	 * initialSetup
+	 *
+	 * @param  mixed $request
+	 * @return void
+	 */
+	public function initialSetup() {
+		
+		// create calendar page.
+		\Drupal::service('restaurant.manager')->createCalendarPage();
+		return [
+      '#type' => 'markup',
+      '#markup' => $this->t('Completed!'),
+    ];
+	}
+	
+	/**
 	 * test
 	 *
 	 * @return void

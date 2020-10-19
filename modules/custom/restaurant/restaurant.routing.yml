@@ -7,9 +7,17 @@ restaurant.add_time_slot:
     _access: 'TRUE'
     _permission: 'access content'
 
-irestaurant.test:
+restaurant.test:
   path: '/test'
   defaults:
     _controller: '\Drupal\restaurant\Controller\RestaurantController::test'
+  requirements:
+    _permission: 'administer content'
+
+restaurant.initial-setup:
+  path: '/initial-setup'
+  defaults:
+    _controller: '\Drupal\restaurant\Controller\RestaurantController::initialSetup'
+    _title: 'Initial setup'
   requirements:
     _permission: 'administer content'
