@@ -7,6 +7,15 @@ restaurant.add_time_slot:
     _access: 'TRUE'
     _permission: 'access content'
 
+restaurant.remove_time_slot:
+  path: '/remove-time-slot'
+  defaults: 
+    _controller: '\Drupal\restaurant\Controller\RestaurantController::removeTimeSlot'
+  methods:  [POST]
+  requirements:
+    _access: 'TRUE'
+    _permission: 'access content'
+
 restaurant.test:
   path: '/test'
   defaults:

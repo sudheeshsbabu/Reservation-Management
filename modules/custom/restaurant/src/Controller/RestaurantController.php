@@ -33,6 +33,18 @@ class RestaurantController extends ControllerBase {
 	}
 	
 	/**
+	 * removeTimeSlot
+	 *
+	 * @param  mixed $request
+	 * @return void
+	 */
+	public function removeTimeSlot(Request $request) {
+		$data = $request->request->get('data');
+		$response = \Drupal::service('restaurant.manager')->removeTimeSlot($data);
+		return new JsonResponse( $response );
+	}
+	
+	/**
 	 * initialSetup
 	 *
 	 * @param  mixed $request

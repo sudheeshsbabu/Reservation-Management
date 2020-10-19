@@ -64,6 +64,25 @@ jQuery(document).ready(function() {
     },
     eventClick: function(calEvent, $event) {
       displayMessage('<strong>Clicked Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+      console.log(calEvent);
+      console.log($event);
+      var data = {
+        start: calEvent.start.getTime(),
+        end: calEvent.end.getTime(),
+        title: calEvent.title
+      }
+      jQuery.ajax({
+        url: '/remove-time-slot',
+        async: true,
+        type: 'POST',
+        data: {
+          'data': data
+        },
+        success: function (data) {
+          console.log('data = ' + data);
+        }
+      });
+      $event.remove();
     },
     eventMouseover: function(calEvent, $event) {
       displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
